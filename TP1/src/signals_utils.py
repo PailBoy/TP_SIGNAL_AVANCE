@@ -1,5 +1,5 @@
 import numpy as np
-from scipy.signal import lfilter
+from scipy.signal import lfilter, firwin
 
 def generate_test_signals(N=1000, variance = 1.0):
 
@@ -15,3 +15,26 @@ def generate_test_signals(N=1000, variance = 1.0):
     d = lfilter(h, [1.0], x)
 
     return x, d, h
+
+
+def generate_test_LMS_signals(N=1000, variance_x = 1.0, noise_variance = 1.0, P = 10, frequency = 0.5):
+
+    sigma_x =  np.sqrt(variance_x)
+    sigma_noise = np.sqrt(noise_variance)
+
+    # Signal d'entrée : bruit blanc
+    x = np.random.normal(0, sigma_x, N)
+    noise = np.random.normal(0, sigma_noise, N)
+    # Réponse impulsionnelle "inconnue"
+    h = firwin(P, cutoff=frequency, pass_zero="lowpass")
+
+
+    # Signal désiré obtenu par filtrage
+    d = lfilter(h, [1.0], x)
+    d_final = d + noise
+
+    return x, d_final, h
+
+
+
+
