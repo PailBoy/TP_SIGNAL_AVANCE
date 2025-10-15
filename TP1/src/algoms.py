@@ -9,7 +9,7 @@ def algoms(x,d, P, mu) :
     for n in range(P-1, N):
         x_vec = []
         for p in range(P):
-            x_vec.append(x[n-p] if n-p>=0 else 0)
+            x_vec.append(x[n-p] )
         yn = 0
         for p in range(P):
             yn+= w[p]*x_vec[p]
