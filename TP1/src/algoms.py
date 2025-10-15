@@ -1,11 +1,11 @@
-
-
 def algoms(x,d, P, mu) :
 
     w=[0]*P
     N = len(x)
     y=[0]*N
+    w_tot = []
     erreur = [0]*N
+    w_tot.append(w.copy())
     for n in range(N):
         x_vec = []
         for p in range(P):
@@ -17,8 +17,8 @@ def algoms(x,d, P, mu) :
         erreur[n] = d[n]-y[n]
         for p in range(P):
             w[p]=w[p] + mu* erreur[n] * x_vec[p]
-
-    return w, y, erreur
+        w_tot.append(w.copy())
+    return w_tot, y, erreur
 
 
 
