@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.signal import lfilter
 
-def generate_test_signals(N=1000):
+def generate_test_signals(N=1000, variance = 1.0):
     """
     Génère les signaux x[n] (bruit blanc) et d[n] = h*x[n],
     où h est la réponse impulsionnelle inconnue [1, 0.3, -0.1, 0.2].
@@ -22,9 +22,10 @@ def generate_test_signals(N=1000):
     h : ndarray
         Réponse impulsionnelle utilisée (filtre inconnu)
     """
+    sigma =  np.sqrt(variance)
 
     # Signal d'entrée : bruit blanc
-    x = np.random.randn(N)
+    x = np.random.normal(0, sigma, N)
 
     # Réponse impulsionnelle "inconnue"
     h = np.array([1.0, 0.3, -0.1, 0.2])
