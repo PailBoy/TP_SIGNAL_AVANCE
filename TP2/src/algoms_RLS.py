@@ -36,5 +36,4 @@ def algoms_RLS(x, d, P, lambda_=0.99, delta=1000.0):
 
         # logger trajectoires
         W.append(w.copy())
-
     return W, y, e
